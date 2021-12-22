@@ -5,6 +5,9 @@
  */
 package juegopreguntas;
 
+import com.mysql.jdbc.Connection;
+import juegopreguntas.conexion.Conexion;
+
 
 public class JuegoPreguntas {
 
@@ -12,7 +15,8 @@ public class JuegoPreguntas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+       
     }
     
 }
