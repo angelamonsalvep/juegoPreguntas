@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 22-12-2021 a las 01:25:43
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.0.13
+-- Servidor: 127.0.0.1:3307
+-- Tiempo de generación: 23-12-2021 a las 23:24:25
+-- Versión del servidor: 10.4.20-MariaDB
+-- Versión de PHP: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,6 +33,17 @@ CREATE TABLE `categoria` (
   `nivel_dificultad_cate` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`id_cate`, `descripcion_cate`, `nivel_dificultad_cate`) VALUES
+(1, 'Categoria 1', 1),
+(2, 'Categoria 2', 2),
+(3, 'Categoria 3', 3),
+(4, 'Categoria 4', 4),
+(5, 'Categoria 5', 5);
+
 -- --------------------------------------------------------
 
 --
@@ -55,6 +66,14 @@ CREATE TABLE `jugador` (
   `id_juga` int(10) UNSIGNED NOT NULL,
   `name_juga` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `jugador`
+--
+
+INSERT INTO `jugador` (`id_juga`, `name_juga`) VALUES
+(1, 'angela'),
+(2, 'angela');
 
 -- --------------------------------------------------------
 
@@ -79,6 +98,18 @@ CREATE TABLE `respuesta` (
   `descripcion_resp` varchar(50) NOT NULL,
   `estado_resp` tinyint(4) NOT NULL,
   `id_preg_resp` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ronda`
+--
+
+CREATE TABLE `ronda` (
+  `id_rond` int(10) UNSIGNED NOT NULL,
+  `descripcion_rond` varchar(50) NOT NULL,
+  `premio_rond` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -119,6 +150,12 @@ ALTER TABLE `respuesta`
   ADD KEY `id_preg_resp` (`id_preg_resp`);
 
 --
+-- Indices de la tabla `ronda`
+--
+ALTER TABLE `ronda`
+  ADD PRIMARY KEY (`id_rond`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -126,7 +163,7 @@ ALTER TABLE `respuesta`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id_cate` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cate` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `juego`
@@ -138,7 +175,7 @@ ALTER TABLE `juego`
 -- AUTO_INCREMENT de la tabla `jugador`
 --
 ALTER TABLE `jugador`
-  MODIFY `id_juga` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_juga` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `pregunta`
@@ -151,6 +188,12 @@ ALTER TABLE `pregunta`
 --
 ALTER TABLE `respuesta`
   MODIFY `id_resp` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `ronda`
+--
+ALTER TABLE `ronda`
+  MODIFY `id_rond` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
