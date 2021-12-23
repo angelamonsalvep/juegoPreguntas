@@ -5,8 +5,7 @@
  */
 package juegopreguntas;
 
-import com.mysql.jdbc.Connection;
-import juegopreguntas.conexion.Conexion;
+import juegopreguntas.vista.JugadorView;
 
 
 public class JuegoPreguntas {
@@ -16,6 +15,9 @@ public class JuegoPreguntas {
      */
     public static void main(String[] args) {
         
+       JugadorView jugadorView = new JugadorView();
+       
+       jugadorView.setVisible(true);
        
     }
     

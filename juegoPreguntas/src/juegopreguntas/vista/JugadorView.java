@@ -6,6 +6,12 @@
 
 package juegopreguntas.vista;
 
+import com.mysql.jdbc.Connection;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+import juegopreguntas.conexion.Conexion;
+import juegopreguntas.model.Jugador;
+
 public class JugadorView extends javax.swing.JFrame {
 
     /** Creates new form JugadorView */
@@ -86,6 +92,7 @@ public class JugadorView extends javax.swing.JFrame {
 
     private void jb_guardarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_guardarJugadorActionPerformed
         // TODO add your handling code here:
+        guardarJugador();
     }//GEN-LAST:event_jb_guardarJugadorActionPerformed
 
     /**
@@ -122,6 +129,38 @@ public class JugadorView extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void guardarJugador(){
+     
+        Jugador jugador = new Jugador();
+        
+        Conexion conecta = new Conexion();
+        Connection con = (Connection) conecta.getConexion();
+        
+        jugador.setNombre(jtf_nombreJugador.getText());
+        
+        if(jugador.getNombre().equalsIgnoreCase("")){
+                  JOptionPane.showMessageDialog(null, "Debe diligenciar todos los datos", "Error", JOptionPane.WARNING_MESSAGE);
+              }else {
+                   try{
+                         PreparedStatement ps = con.prepareStatement("INSERT INTO jugador (name_juga) VALUES (?)");
+                         ps.setString(1, jugador.getNombre());
+
+                         ps.executeUpdate();
+                         
+                         JOptionPane.showMessageDialog(null, "Agregado Correctamente");
+                         jtf_nombreJugador.setText("");
+                     }catch (Exception e){
+                          System.out.println("Error al insertar ,"+e);
+
+                     }
+              }
+        
+        
+        
+        
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jb_guardarJugador;
