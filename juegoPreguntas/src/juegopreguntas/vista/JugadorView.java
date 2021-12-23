@@ -6,10 +6,6 @@
 
 package juegopreguntas.vista;
 
-/**
- *
- * @author Kevin
- */
 public class JugadorView extends javax.swing.JFrame {
 
     /** Creates new form JugadorView */
