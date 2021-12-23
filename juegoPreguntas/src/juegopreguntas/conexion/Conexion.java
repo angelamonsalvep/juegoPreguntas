@@ -16,7 +16,7 @@ public class Conexion {
     private static final String driver = "com.mysql.jdbc.Driver";
     private static final String user = "root";
     private static final String pass = "";
-    private static final String url = "jdbc:mysql://localhost:3307/juego_preguntas_db";
+    private static final String url = "jdbc:mysql://localhost:3306/juego_preguntas_db";
      
      public Connection getConexion(){
          // Reseteamos a null la conexion a la bd

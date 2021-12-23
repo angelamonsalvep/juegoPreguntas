@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3307
--- Tiempo de generación: 23-12-2021 a las 23:24:25
--- Versión del servidor: 10.4.20-MariaDB
--- Versión de PHP: 8.0.9
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 24-12-2021 a las 00:30:10
+-- Versión del servidor: 10.4.22-MariaDB
+-- Versión de PHP: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -113,6 +113,17 @@ CREATE TABLE `ronda` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Volcado de datos para la tabla `ronda`
+--
+
+INSERT INTO `ronda` (`id_rond`, `descripcion_rond`, `premio_rond`) VALUES
+(1, 'Ronda 1', 200000),
+(2, 'Ronda 2', 500000),
+(3, 'Ronda 3', 1000000),
+(4, 'Ronda 4', 1500000),
+(5, 'Ronda 5', 2000000);
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -193,7 +204,7 @@ ALTER TABLE `respuesta`
 -- AUTO_INCREMENT de la tabla `ronda`
 --
 ALTER TABLE `ronda`
-  MODIFY `id_rond` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_rond` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
