@@ -50,21 +50,30 @@ public class JugarView extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(350, 100));
+        setResizable(false);
 
+        jl_descripcionRonda.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jl_descripcionRonda.setText("DESCRIPCIÓN RONDA");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("PREMIO: ");
 
+        jl_premio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jl_premio.setText("$VALOR PREMIO");
 
+        jl_desc_preg.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jl_desc_preg.setText("Descripción Pregunta.....");
 
+        jl_desc_categoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jl_desc_categoria.setText("Descripción de la categoria...");
 
         bg_opciones.add(jrb_opcion1);
+        jrb_opcion1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jrb_opcion1.setText("Opción de respuesta 1....");
 
         bg_opciones.add(jrb_opcion2);
+        jrb_opcion2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jrb_opcion2.setText("Opción de respuesta 2.....");
         jrb_opcion2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,9 +82,11 @@ public class JugarView extends javax.swing.JFrame {
         });
 
         bg_opciones.add(jrb_opcion3);
+        jrb_opcion3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jrb_opcion3.setText("Opción de respuesta 3.....");
 
         bg_opciones.add(jrb_opcion4);
+        jrb_opcion4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jrb_opcion4.setText("Opción de respuesta 4....");
         jrb_opcion4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +94,7 @@ public class JugarView extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton1.setText("VALIDAR RESPUESTA");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,58 +107,58 @@ public class JugarView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 182, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jl_descripcionRonda)
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jl_premio)
-                        .addGap(172, 172, 172))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(264, 264, 264))))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jrb_opcion1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jrb_opcion2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jrb_opcion3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jrb_opcion4, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(177, 177, 177))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(191, 191, 191)
+                        .addGap(220, 220, 220)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jrb_opcion2)
-                            .addComponent(jrb_opcion1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jrb_opcion3)
-                            .addComponent(jrb_opcion4)))
+                            .addComponent(jl_descripcionRonda, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jl_premio))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(217, 217, 217)
-                        .addComponent(jl_desc_categoria))
+                        .addGap(56, 56, 56)
+                        .addComponent(jl_desc_preg, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(jl_desc_preg)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(180, 180, 180)
+                        .addComponent(jl_desc_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(212, 212, 212)
+                        .addComponent(jButton1)))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(54, 54, 54)
+                .addComponent(jl_descripcionRonda)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jl_descripcionRonda)
                     .addComponent(jLabel2)
                     .addComponent(jl_premio))
-                .addGap(41, 41, 41)
-                .addComponent(jl_desc_preg)
-                .addGap(39, 39, 39)
-                .addComponent(jl_desc_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(jrb_opcion1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(jl_desc_preg, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jl_desc_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jrb_opcion1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jrb_opcion2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jrb_opcion3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jrb_opcion4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
                 .addComponent(jButton1)
-                .addGap(58, 58, 58))
+                .addGap(26, 26, 26))
         );
 
         pack();

@@ -35,6 +35,7 @@ public class JugadorView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setForeground(java.awt.Color.white);
+        setLocation(new java.awt.Point(420, 200));
 
         label_1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         label_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -93,6 +94,7 @@ public class JugadorView extends javax.swing.JFrame {
     private void jb_guardarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_guardarJugadorActionPerformed
         // TODO add your handling code here:
         guardarJugador();
+        this.dispose();
     }//GEN-LAST:event_jb_guardarJugadorActionPerformed
 
     /**
