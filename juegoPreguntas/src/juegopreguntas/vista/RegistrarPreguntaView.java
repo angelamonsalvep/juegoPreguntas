@@ -177,7 +177,7 @@ public class RegistrarPreguntaView extends javax.swing.JFrame {
     función que retorna una lista de objetos de tipo categoria, los cuales
     se obtienen de la base de datos, por medio de una consulta SQL.
     --------------------------------------------------------------*/
-    private ArrayList<Categoria> consultarCategorias(){
+    public ArrayList<Categoria> consultarCategorias(){
         
         ArrayList<Categoria> listCategorias = new ArrayList<>();
         try{

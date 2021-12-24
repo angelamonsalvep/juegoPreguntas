@@ -54,18 +54,22 @@ public class JugarView extends javax.swing.JFrame {
         setResizable(false);
 
         jl_descripcionRonda.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jl_descripcionRonda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jl_descripcionRonda.setText("DESCRIPCIÓN RONDA");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("PREMIO: ");
 
         jl_premio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jl_premio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jl_premio.setText("$VALOR PREMIO");
 
         jl_desc_preg.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jl_desc_preg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jl_desc_preg.setText("Descripción Pregunta.....");
 
         jl_desc_categoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jl_desc_categoria.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jl_desc_categoria.setText("Descripción de la categoria...");
 
         bg_opciones.add(jrb_opcion1);
@@ -270,11 +274,22 @@ public class JugarView extends javax.swing.JFrame {
         
        
         Random r = new Random();
-        int numeroAleatorio = r.nextInt(4)+1;  // Entre 0 y 5, más 1.
+        int numeroAleatorio = r.nextInt(listaPreguntas.size());  // Entre 0 y 5, más 1.
         System.out.println("numero aleatorio: " + numeroAleatorio);
         
-        jl_desc_preg.setText(listaPreguntas.get(numeroAleatorio).getDescripcion());
+        jl_desc_preg.setText("(Pregunta) \n" + listaPreguntas.get(numeroAleatorio).getDescripcion());
         
+    }
+    
+    /*--------------------------------------------------------------
+    función para mostrar en jlabel la descripción de la categoria correspondiente a 
+    la pregunta seleccionada, la cual se obtiene de la base de datos.
+    ----------------------------------------------------------------*/
+    public void llenarJLCategoria(int contRonda){
+        ArrayList<Categoria> listCategorias;
+        listCategorias = new RegistrarPreguntaView().consultarCategorias();
+       
+        jl_desc_categoria.setText("( Nivel de dificultad: " + listCategorias.get(contRondas).getNivelDificultad()+ " )");
     }
     
     
