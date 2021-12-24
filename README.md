@@ -17,7 +17,7 @@ Las tecnologías revisadas y que están dentro de este repositorio son:
 ** Preparando la base de datos
 
 Para poder realizar registros en la aplicación, es recomendable ejecutar el programa XAMPP, activar el servidor apache, 
-y el servidor de mySQL. Se debe crear una base de datos llamada *juego_preguntas_db* en =MySQL=, esto se hace de la siguiente forma:
+y el servidor de mySQL, puerto 3306. Se debe crear una base de datos llamada *juego_preguntas_db* en =MySQL=, esto se hace de la siguiente forma:
 
 #+Ingresar a PHPMyadmin
 se escribe en el navegador la ip de localhost: 127.0.0.1 
@@ -36,7 +36,7 @@ Ya se puede usar la aplicación y realizar registros.
 
 ** Ejecutando el proyecto
 
-Para ejecutar el proyecto, en la carpeta dist dentro del proyecto, en la siguiente ruta y ejecutas el archivo "juegoPreguntas,jar":
+Para ejecutar el proyecto, buscas en la carpeta dist dentro del proyecto, en la siguiente ruta y ejecutas el archivo "juegoPreguntas,jar":
 
 #+begin_src sh
 .....\juegoPreguntas\juegoPreguntas\dist\juegoPreguntas.jar
