@@ -19,6 +19,12 @@ import juegopreguntas.model.Pregunta;
  * @author Angelita
  */
 public class RegistrarPreguntaView extends javax.swing.JFrame {
+    
+    private Pregunta pregunta = new Pregunta();
+
+    public Pregunta getPregunta() {
+        return pregunta;
+    }
 
     /**
      * Creates new form RegistrarPreguntaView
@@ -118,6 +124,9 @@ public class RegistrarPreguntaView extends javax.swing.JFrame {
     private void jb_guardarPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_guardarPreguntaActionPerformed
         // TODO add your handling code here:
         registarPregunta();
+        RegistrarRespuestasView registrarRespuestasView = new RegistrarRespuestasView();
+        registrarRespuestasView.mostrarPregunta(pregunta.getDescripcion());
+        registrarRespuestasView.setVisible(true);
     }//GEN-LAST:event_jb_guardarPreguntaActionPerformed
 
     /**
@@ -228,9 +237,7 @@ public class RegistrarPreguntaView extends javax.swing.JFrame {
     función para registrar una pregunta en la base de datos
     --------------------------------------------------------------*/
     private void registarPregunta(){
-        
-        Pregunta pregunta = new Pregunta();
-        
+          
         Conexion conecta = new Conexion();
         Connection con = (Connection) conecta.getConexion();
         
