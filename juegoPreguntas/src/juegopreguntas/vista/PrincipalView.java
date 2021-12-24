@@ -40,8 +40,18 @@ public class PrincipalView extends javax.swing.JFrame {
         jLabel1.setText("BIENVENIDO AL JUEGO DE PREGUNTAS");
 
         jb_configurarJuego.setText("CONGIFURAR JUEGO");
+        jb_configurarJuego.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_configurarJuegoActionPerformed(evt);
+            }
+        });
 
         jb_crearJugador.setText("CREAR JUGADOR");
+        jb_crearJugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_crearJugadorActionPerformed(evt);
+            }
+        });
 
         jb_jugar.setText("JUGAR");
 
@@ -104,6 +114,20 @@ public class PrincipalView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jb_crearJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_crearJugadorActionPerformed
+        // TODO add your handling code here:
+        JugadorView jugadorView = new JugadorView();
+        jugadorView.setVisible(true);
+    }//GEN-LAST:event_jb_crearJugadorActionPerformed
+
+    private void jb_configurarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_configurarJuegoActionPerformed
+        // TODO add your handling code here:
+        
+        RegistrarPreguntaView registrarPreguntaView = new RegistrarPreguntaView();
+        registrarPreguntaView.llenarCBCategorias();
+        registrarPreguntaView.setVisible(true);
+    }//GEN-LAST:event_jb_configurarJuegoActionPerformed
 
     /**
      * @param args the command line arguments

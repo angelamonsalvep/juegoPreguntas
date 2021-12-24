@@ -5,7 +5,9 @@
  */
 package juegopreguntas;
 
+import java.security.Principal;
 import juegopreguntas.vista.JugadorView;
+import juegopreguntas.vista.PrincipalView;
 
 
 public class JuegoPreguntas {
@@ -15,9 +17,8 @@ public class JuegoPreguntas {
      */
     public static void main(String[] args) {
         
-       JugadorView jugadorView = new JugadorView();
-       
-       jugadorView.setVisible(true);
+        PrincipalView principalView = new PrincipalView();
+        principalView.setVisible(true);
        
     }
     

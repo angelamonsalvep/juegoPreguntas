@@ -83,11 +83,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="CONGIFURAR JUEGO"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_configurarJuegoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jb_crearJugador">
       <Properties>
         <Property name="text" type="java.lang.String" value="CREAR JUGADOR"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_crearJugadorActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jb_jugar">
       <Properties>

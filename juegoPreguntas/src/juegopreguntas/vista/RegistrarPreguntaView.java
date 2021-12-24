@@ -4,6 +4,13 @@
  */
 package juegopreguntas.vista;
 
+import com.mysql.jdbc.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import juegopreguntas.conexion.Conexion;
+import juegopreguntas.model.Categoria;
+
 /**
  *
  * @author Angelita
@@ -29,10 +36,10 @@ public class RegistrarPreguntaView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jta_descripcionCategoria = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        jcb_categorias = new javax.swing.JComboBox<>();
+        jb_guardarPregunta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,20 +50,20 @@ public class RegistrarPreguntaView extends javax.swing.JFrame {
         jScrollPane1.setToolTipText("");
         jScrollPane1.setHorizontalScrollBar(null);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setAutoscrolls(false);
-        jScrollPane1.setViewportView(jTextArea1);
+        jta_descripcionCategoria.setColumns(20);
+        jta_descripcionCategoria.setLineWrap(true);
+        jta_descripcionCategoria.setRows(5);
+        jta_descripcionCategoria.setAutoscrolls(false);
+        jScrollPane1.setViewportView(jta_descripcionCategoria);
 
         jLabel3.setText("CATEGORIA: ");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcb_categorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton1.setText("GUARDAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jb_guardarPregunta.setText("GUARDAR");
+        jb_guardarPregunta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jb_guardarPreguntaActionPerformed(evt);
             }
         });
 
@@ -77,11 +84,11 @@ public class RegistrarPreguntaView extends javax.swing.JFrame {
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jcb_categorias, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(154, 154, 154)
-                        .addComponent(jButton1)))
+                        .addComponent(jb_guardarPregunta)))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -96,23 +103,26 @@ public class RegistrarPreguntaView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcb_categorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
-                .addComponent(jButton1)
+                .addComponent(jb_guardarPregunta)
                 .addGap(33, 33, 33))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jb_guardarPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_guardarPreguntaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_jb_guardarPreguntaActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void main(String args[]) {
+        
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -139,18 +149,75 @@ public class RegistrarPreguntaView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new RegistrarPreguntaView().setVisible(true);
+                
             }
         });
     }
+    
+    /*--------------------------------------------------------------
+    función que retorna una lista de objetos de tipo categoria, los cuales
+    se obtienen de la base de datos, por medio de una consulta SQL.
+    --------------------------------------------------------------*/
+    private ArrayList<Categoria> consultarCategorias(){
+        
+        ArrayList<Categoria> listCategorias = new ArrayList<>();
+        try{
+            Conexion conecta = new Conexion();
+            Connection con = (Connection) conecta.getConexion();
+            
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM categoria;");
+            
+            int i=0;
+            while(rs.next())  {
+                Categoria categoria = new Categoria();
+                categoria.setId(Integer.parseInt(rs.getString(1)));
+                System.out.println("id_cat:  " + categoria.getId());
+                categoria.setDescripcion(rs.getString(2));
+                System.out.println("descripción_cat: " + categoria.getDescripcion());
+                categoria.setNivelDificultad(Integer.parseInt(rs.getString(3)));
+                System.out.println("nivel_dificultad_cat:  " + categoria.getNivelDificultad());
+                i=i+1;
+                listCategorias.add(categoria);
+            }
+                        
+        } catch (Exception e){
+            System.out.println(e);            
+        }
+        
+        return listCategorias;
+    }
+    
+    
+    
+    /*--------------------------------------------------------------
+    función para llenar combobox con una lista de categorias, las cuales se
+    obtienen de la base de datos
+    ----------------------------------------------------------------*/
+    public void llenarCBCategorias(){
+        jcb_categorias.removeAllItems();
+        Categoria categoria = new Categoria();
+        ArrayList<Categoria> listCategorias = new ArrayList<>();
+        listCategorias = consultarCategorias();
+        int i=0;
+        while(i<listCategorias.size()) {
+            
+            jcb_categorias.addItem(listCategorias.get(i).getDescripcion());
+            i++;
+        }
+    }
+    
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton jb_guardarPregunta;
+    private javax.swing.JComboBox<String> jcb_categorias;
+    private javax.swing.JTextArea jta_descripcionCategoria;
     // End of variables declaration//GEN-END:variables
 }
