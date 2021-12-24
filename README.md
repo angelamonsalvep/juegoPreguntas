@@ -40,7 +40,7 @@ Es necesario descargar e instalar en la computadora JRE (Java Runtime Environmen
 puedes descargarlo en la siguiente ruta:
 
 #+link para descarga de Java Runtime Environment
-....\juegoPreguntas\base de datos para importar\juego_preguntas_db
+https://www.java.com/es/download/ie_manual.jsp
 #+end_src
 
 Para ejecutar el proyecto, buscas en la carpeta dist dentro del proyecto, en la siguiente ruta y ejecutas el archivo "juegoPreguntas,jar":
