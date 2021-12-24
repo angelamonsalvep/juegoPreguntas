@@ -173,6 +173,8 @@ public class RegistrarRespuestasView extends javax.swing.JFrame {
         registarRespuesta(opcionIncorrecta1, false);
         registarRespuesta(opcionIncorrecta2, false);
         registarRespuesta(opcionIncorrecta3, false);
+        this.dispose();
+        
     }//GEN-LAST:event_jb_guardarOpcionesActionPerformed
 
     /**

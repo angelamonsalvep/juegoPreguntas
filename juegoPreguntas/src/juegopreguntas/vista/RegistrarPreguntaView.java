@@ -127,6 +127,8 @@ public class RegistrarPreguntaView extends javax.swing.JFrame {
         RegistrarRespuestasView registrarRespuestasView = new RegistrarRespuestasView();
         registrarRespuestasView.mostrarPregunta(pregunta.getDescripcion());
         registrarRespuestasView.setVisible(true);
+        this.dispose();
+        
     }//GEN-LAST:event_jb_guardarPreguntaActionPerformed
 
     /**

@@ -54,6 +54,11 @@ public class PrincipalView extends javax.swing.JFrame {
         });
 
         jb_jugar.setText("JUGAR");
+        jb_jugar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_jugarActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -128,6 +133,13 @@ public class PrincipalView extends javax.swing.JFrame {
         registrarPreguntaView.llenarCBCategorias();
         registrarPreguntaView.setVisible(true);
     }//GEN-LAST:event_jb_configurarJuegoActionPerformed
+
+    private void jb_jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_jugarActionPerformed
+        // TODO add your handling code here:
+        JugarView jugarView = new JugarView();
+        jugarView.llenarJLRondas(0);
+        jugarView.setVisible(true );
+    }//GEN-LAST:event_jb_jugarActionPerformed
 
     /**
      * @param args the command line arguments

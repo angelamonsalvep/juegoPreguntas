@@ -4,12 +4,21 @@
  */
 package juegopreguntas.vista;
 
+import com.mysql.jdbc.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import juegopreguntas.conexion.Conexion;
+import juegopreguntas.model.Categoria;
+import juegopreguntas.model.Ronda;
+
 /**
  *
  * @author Angelita
  */
 public class JugarView extends javax.swing.JFrame {
 
+    private int contRondas=0;
     /**
      * Creates new form JugarView
      */
@@ -27,9 +36,9 @@ public class JugarView extends javax.swing.JFrame {
     private void initComponents() {
 
         bg_opciones = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
+        jl_descripcionRonda = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jl_premio = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jrb_opcion1 = new javax.swing.JRadioButton();
@@ -40,11 +49,11 @@ public class JugarView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("DESCRIPCIÓN RONDA");
+        jl_descripcionRonda.setText("DESCRIPCIÓN RONDA");
 
         jLabel2.setText("PREMIO: ");
 
-        jLabel3.setText("$VALOR PREMIO");
+        jl_premio.setText("$VALOR PREMIO");
 
         jLabel4.setText("Descripción Pregunta.....");
 
@@ -98,11 +107,11 @@ public class JugarView extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel4)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
+                                        .addComponent(jl_descripcionRonda)
                                         .addGap(31, 31, 31)
                                         .addComponent(jLabel2)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3))
+                                .addComponent(jl_premio))
                             .addComponent(jrb_opcion4))))
                 .addContainerGap(34, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -115,9 +124,9 @@ public class JugarView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(jl_descripcionRonda)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(jl_premio))
                 .addGap(36, 36, 36)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -184,15 +193,66 @@ public class JugarView extends javax.swing.JFrame {
             }
         });
     }
+    
+    /*--------------------------------------------------------------
+    función para llenar jlabels con los datos de cada objeto tipo ronda, las cuales se
+    obtienen de la base de datos
+    ----------------------------------------------------------------*/
+    public void llenarJLRondas(int contRonda){
+        
+        Ronda ronda = new Ronda();
+        ArrayList<Ronda> listRondas = new ArrayList<>();
+        listRondas = consultarRondas();
+        jl_descripcionRonda.setText(listRondas.get(contRonda).getDescripcion());
+        jl_premio.setText("$ " + String.valueOf(listRondas.get(contRonda).getPremio()));
+        
+    }
+    
+    
+    /*--------------------------------------------------------------
+    función que retorna una lista de objetos de tipo Ronda, los cuales
+    se obtienen de la base de datos, por medio de una consulta SQL.
+    --------------------------------------------------------------*/
+    public ArrayList<Ronda> consultarRondas(){
+        
+        ArrayList<Ronda> listRondas = new ArrayList<>();
+        try{
+            Conexion conecta = new Conexion();
+            Connection con = (Connection) conecta.getConexion();
+            
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM ronda;");
+            
+            int i=0;
+            while(rs.next())  {
+                Ronda ronda = new Ronda();
+                ronda.setId(Integer.parseInt(rs.getString(1)));
+                System.out.println("id_cat:  " + ronda.getId());
+                ronda.setDescripcion(rs.getString(2));
+                System.out.println("descripción_cat: " + ronda.getDescripcion());
+                ronda.setPremio(Integer.parseInt(rs.getString(3)));
+                System.out.println("premio:  " + ronda.getPremio());
+                i=i+1;
+                listRondas.add(ronda);
+            }
+            con.close();
+                        
+        } catch (Exception e){
+            System.out.println(e);            
+        }
+        
+        return listRondas;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bg_opciones;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jl_descripcionRonda;
+    private javax.swing.JLabel jl_premio;
     private javax.swing.JRadioButton jrb_opcion1;
     private javax.swing.JRadioButton jrb_opcion2;
     private javax.swing.JRadioButton jrb_opcion3;
