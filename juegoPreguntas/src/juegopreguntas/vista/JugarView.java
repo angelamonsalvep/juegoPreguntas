@@ -8,8 +8,10 @@ import com.mysql.jdbc.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Random;
 import juegopreguntas.conexion.Conexion;
 import juegopreguntas.model.Categoria;
+import juegopreguntas.model.Pregunta;
 import juegopreguntas.model.Ronda;
 
 /**
@@ -39,8 +41,8 @@ public class JugarView extends javax.swing.JFrame {
         jl_descripcionRonda = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jl_premio = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jl_desc_preg = new javax.swing.JLabel();
+        jl_desc_categoria = new javax.swing.JLabel();
         jrb_opcion1 = new javax.swing.JRadioButton();
         jrb_opcion2 = new javax.swing.JRadioButton();
         jrb_opcion3 = new javax.swing.JRadioButton();
@@ -55,9 +57,9 @@ public class JugarView extends javax.swing.JFrame {
 
         jl_premio.setText("$VALOR PREMIO");
 
-        jLabel4.setText("Descripción Pregunta.....");
+        jl_desc_preg.setText("Descripción Pregunta.....");
 
-        jLabel5.setText("Descripción de la categoria...");
+        jl_desc_categoria.setText("Descripción de la categoria...");
 
         bg_opciones.add(jrb_opcion1);
         jrb_opcion1.setText("Opción de respuesta 1....");
@@ -96,7 +98,7 @@ public class JugarView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(126, 126, 126)
-                        .addComponent(jLabel5))
+                        .addComponent(jl_desc_categoria))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(73, 73, 73)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,7 +107,7 @@ public class JugarView extends javax.swing.JFrame {
                             .addComponent(jrb_opcion3)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4)
+                                    .addComponent(jl_desc_preg)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jl_descripcionRonda)
                                         .addGap(31, 31, 31)
@@ -128,9 +130,9 @@ public class JugarView extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jl_premio))
                 .addGap(36, 36, 36)
-                .addComponent(jLabel4)
+                .addComponent(jl_desc_preg)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jl_desc_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jrb_opcion1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -205,6 +207,7 @@ public class JugarView extends javax.swing.JFrame {
         listRondas = consultarRondas();
         jl_descripcionRonda.setText(listRondas.get(contRonda).getDescripcion());
         jl_premio.setText("$ " + String.valueOf(listRondas.get(contRonda).getPremio()));
+        seleccionarPreguntaAleatoria(consultarPreguntasByCategoria());
         
     }
     
@@ -227,9 +230,9 @@ public class JugarView extends javax.swing.JFrame {
             while(rs.next())  {
                 Ronda ronda = new Ronda();
                 ronda.setId(Integer.parseInt(rs.getString(1)));
-                System.out.println("id_cat:  " + ronda.getId());
+                System.out.println("id_ronda:  " + ronda.getId());
                 ronda.setDescripcion(rs.getString(2));
-                System.out.println("descripción_cat: " + ronda.getDescripcion());
+                System.out.println("descripción_ronda: " + ronda.getDescripcion());
                 ronda.setPremio(Integer.parseInt(rs.getString(3)));
                 System.out.println("premio:  " + ronda.getPremio());
                 i=i+1;
@@ -244,13 +247,65 @@ public class JugarView extends javax.swing.JFrame {
         return listRondas;
     }
     
+        /*--------------------------------------------------------------
+    función que selecciona por medio de la generacion de un número aleatorio,
+    un item de la lista de preguntas que se recibe como parametro
+    --------------------------------------------------------------*/
+    private void seleccionarPreguntaAleatoria(ArrayList<Pregunta> listaPreguntas) {
+        
+       
+        Random r = new Random();
+        int numeroAleatorio = r.nextInt(4)+1;  // Entre 0 y 5, más 1.
+        System.out.println("numero aleatorio: " + numeroAleatorio);
+        
+        jl_desc_preg.setText(listaPreguntas.get(numeroAleatorio).getDescripcion());
+        
+    }
+    
+    
+    
+        /*--------------------------------------------------------------
+    función que retorna una lista de objetos tipo Pregunta, estos datos
+    se obtienen de la base de datos, por medio de una consulta SQL.
+    --------------------------------------------------------------*/
+    private ArrayList<Pregunta> consultarPreguntasByCategoria(){
+        
+            ArrayList<Pregunta> listPreguntas = new ArrayList<>();
+        try{
+            Conexion conecta = new Conexion();
+            Connection con = (Connection) conecta.getConexion();
+            
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT `pregunta`.`id_preg`, `pregunta`.`descripcion_preg` " +
+                                        "FROM `pregunta` "
+                                        + "WHERE pregunta.id_cate_preg = "+ contRondas+1 +";");
+            
+            int i=0;
+            while(rs.next())  {
+                Pregunta pregunta = new Pregunta();
+                pregunta.setId(Integer.parseInt(rs.getString(1)));
+                System.out.println("id_preg:  " + pregunta.getId());
+                pregunta.setDescripcion(rs.getString(2));
+                System.out.println("descripción_preg: " + pregunta.getDescripcion());
+                i=i+1;
+                listPreguntas.add(pregunta);
+            }
+                        
+        } catch (Exception e){
+            System.out.println(e);            
+        }
+        
+        return listPreguntas;
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bg_opciones;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jl_desc_categoria;
+    private javax.swing.JLabel jl_desc_preg;
     private javax.swing.JLabel jl_descripcionRonda;
     private javax.swing.JLabel jl_premio;
     private javax.swing.JRadioButton jrb_opcion1;

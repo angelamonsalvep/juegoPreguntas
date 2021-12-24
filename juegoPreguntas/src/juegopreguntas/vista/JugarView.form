@@ -31,7 +31,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
-                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                      <Component id="jl_desc_categoria" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
@@ -41,7 +41,7 @@
                           <Component id="jrb_opcion3" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jl_desc_preg" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Component id="jl_descripcionRonda" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
@@ -74,9 +74,9 @@
                   <Component id="jl_premio" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+              <Component id="jl_desc_preg" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jLabel5" min="-2" pref="14" max="-2" attributes="0"/>
+              <Component id="jl_desc_categoria" min="-2" pref="14" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jrb_opcion1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -108,12 +108,12 @@
         <Property name="text" type="java.lang.String" value="$VALOR PREMIO"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
+    <Component class="javax.swing.JLabel" name="jl_desc_preg">
       <Properties>
         <Property name="text" type="java.lang.String" value="Descripci&#xf3;n Pregunta....."/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
+    <Component class="javax.swing.JLabel" name="jl_desc_categoria">
       <Properties>
         <Property name="text" type="java.lang.String" value="Descripci&#xf3;n de la categoria..."/>
       </Properties>
