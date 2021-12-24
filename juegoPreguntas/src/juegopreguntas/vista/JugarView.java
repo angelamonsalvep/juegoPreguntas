@@ -47,7 +47,7 @@ public class JugarView extends javax.swing.JFrame {
         jrb_opcion2 = new javax.swing.JRadioButton();
         jrb_opcion3 = new javax.swing.JRadioButton();
         jrb_opcion4 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        jb_validarRespuesta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(350, 100));
@@ -98,11 +98,11 @@ public class JugarView extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton1.setText("VALIDAR RESPUESTA");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jb_validarRespuesta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jb_validarRespuesta.setText("VALIDAR RESPUESTA");
+        jb_validarRespuesta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jb_validarRespuestaActionPerformed(evt);
             }
         });
 
@@ -136,7 +136,7 @@ public class JugarView extends javax.swing.JFrame {
                         .addComponent(jl_desc_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(212, 212, 212)
-                        .addComponent(jButton1)))
+                        .addComponent(jb_validarRespuesta)))
                 .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -161,7 +161,7 @@ public class JugarView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jrb_opcion4)
                 .addGap(32, 32, 32)
-                .addComponent(jButton1)
+                .addComponent(jb_validarRespuesta)
                 .addGap(26, 26, 26))
         );
 
@@ -176,9 +176,10 @@ public class JugarView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jrb_opcion4ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jb_validarRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_validarRespuestaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        new ValidacionRespuestaView().setVisible(true);
+    }//GEN-LAST:event_jb_validarRespuestaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -332,8 +333,8 @@ public class JugarView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bg_opciones;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jb_validarRespuesta;
     private javax.swing.JLabel jl_desc_categoria;
     private javax.swing.JLabel jl_desc_preg;
     private javax.swing.JLabel jl_descripcionRonda;
