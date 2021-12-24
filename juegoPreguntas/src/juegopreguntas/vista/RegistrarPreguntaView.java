@@ -5,11 +5,14 @@
 package juegopreguntas.vista;
 
 import com.mysql.jdbc.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import juegopreguntas.conexion.Conexion;
 import juegopreguntas.model.Categoria;
+import juegopreguntas.model.Pregunta;
 
 /**
  *
@@ -114,7 +117,7 @@ public class RegistrarPreguntaView extends javax.swing.JFrame {
 
     private void jb_guardarPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_guardarPreguntaActionPerformed
         // TODO add your handling code here:
-        
+        registarPregunta();
     }//GEN-LAST:event_jb_guardarPreguntaActionPerformed
 
     /**
@@ -209,7 +212,51 @@ public class RegistrarPreguntaView extends javax.swing.JFrame {
         }
     }
     
-   
+    
+    /*--------------------------------------------------------------
+    función para obtener id de la categoria seleccionada en el comboBox
+    --------------------------------------------------------------*/
+    private int obtenerIdCategoria() {
+        int id_categoria;
+        id_categoria = jcb_categorias.getSelectedIndex();
+        System.out.println("id_cat:  " + id_categoria);
+        return id_categoria+1;
+    }
+    
+    
+    /*--------------------------------------------------------------
+    función para registrar una pregunta en la base de datos
+    --------------------------------------------------------------*/
+    private void registarPregunta(){
+        
+        Pregunta pregunta = new Pregunta();
+        
+        Conexion conecta = new Conexion();
+        Connection con = (Connection) conecta.getConexion();
+        
+        pregunta.setDescripcion(jta_descripcionCategoria.getText());
+        
+        
+        if(pregunta.getDescripcion().equalsIgnoreCase("")){
+                  JOptionPane.showMessageDialog(null, "Debe diligenciar todos los datos", "Error", JOptionPane.WARNING_MESSAGE);
+              }else {
+                   try{
+                         PreparedStatement ps = con.prepareStatement("INSERT INTO pregunta (descripcion_preg, id_cate_preg) VALUES (?,?)");
+                         ps.setString(1, pregunta.getDescripcion());
+                         ps.setInt(2, obtenerIdCategoria());
+
+                         ps.executeUpdate();
+                         
+                         JOptionPane.showMessageDialog(null, "Agregado Correctamente");
+                         jta_descripcionCategoria.setText("");
+                     }catch (Exception e){
+                          System.out.println("Error al insertar ,"+e);
+
+                     }
+              }
+        
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
