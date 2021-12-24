@@ -6,8 +6,13 @@ package juegopreguntas.vista;
 
 import com.mysql.jdbc.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import juegopreguntas.conexion.Conexion;
+import juegopreguntas.model.Categoria;
+import juegopreguntas.model.Pregunta;
 import juegopreguntas.model.Respuesta;
 
 /**
@@ -17,6 +22,7 @@ import juegopreguntas.model.Respuesta;
 public class RegistrarRespuestasView extends javax.swing.JFrame {
 
     Respuesta respuesta = new Respuesta();
+    String opcionCorrecta, opcionIncorrecta1, opcionIncorrecta2, opcionIncorrecta3;
     
     /**
      * Creates new form Registar
@@ -162,6 +168,11 @@ public class RegistrarRespuestasView extends javax.swing.JFrame {
 
     private void jb_guardarOpcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_guardarOpcionesActionPerformed
         // TODO add your handling code here:
+        obtenerStringOpcionesRespOfForm();
+        registarRespuesta(opcionCorrecta, true);
+        registarRespuesta(opcionIncorrecta1, false);
+        registarRespuesta(opcionIncorrecta2, false);
+        registarRespuesta(opcionIncorrecta3, false);
     }//GEN-LAST:event_jb_guardarOpcionesActionPerformed
 
     /**
@@ -200,6 +211,18 @@ public class RegistrarRespuestasView extends javax.swing.JFrame {
         });
     }
     
+    
+    /*--------------------------------------------------------------
+    función para guardar en variables la descripción de cada opción de respuesta, para luego
+    ----------------------------------------------------------------*/
+    private void obtenerStringOpcionesRespOfForm() {
+        opcionCorrecta = jta_respuestaCorrecta.getText();
+        opcionIncorrecta1 = jta_opcionInc1.getText();
+        opcionIncorrecta2 = jta_opcionInc2.getText();
+        opcionIncorrecta3 = jta_OpcionInc3.getText();
+        
+    }
+    
     /*--------------------------------------------------------------
     función para traer el enunciado de la pregunta creada en el formulario
     RegistrarPreguntaView
@@ -209,7 +232,83 @@ public class RegistrarRespuestasView extends javax.swing.JFrame {
         jl_pregunta.setText(Pregunta);
     }
     
+    /*--------------------------------------------------------------
+    función para registrar una respuesta en la base de datos
+    recibe como parametros:
+    String respuesta: la descripcion de la respuesta a guardar
+    boolean estado: estado de la respuesta a guardar. 
+                (true para las respuestas correctas)
+                (false para las respuestas incorrectas)
+    --------------------------------------------------------------*/
+    private void registarRespuesta(String respuesta, boolean estado){
+          
+        Conexion conecta = new Conexion();
+        Connection con = (Connection) conecta.getConexion();
+        int id_pregunta = consultarPreguntaByDescripcion();
+        
+        if(respuesta.equalsIgnoreCase("")){
+                  JOptionPane.showMessageDialog(null, "Debe diligenciar todos los datos", "Error", JOptionPane.WARNING_MESSAGE);
+              }else {
+                   try{
+                         PreparedStatement ps = con.prepareStatement("INSERT INTO respuesta (descripcion_resp, estado_resp, id_preg_resp) VALUES (?,?,?)");
+                         ps.setString(1, respuesta);
+                         ps.setInt(2, booleanToInteger(estado));
+                         ps.setInt(3, id_pregunta);
+
+                         ps.executeUpdate();
+                         
+                         JOptionPane.showMessageDialog(null, "Agregado Correctamente");
+                     }catch (Exception e){
+                          System.out.println("Error al insertar ,"+e);
+
+                     }
+              }
+        
+        
+    }
     
+    /*--------------------------------------------------------------
+    función que recibe un boolean y  retorna entero 
+    1 si es true
+    2 si es false
+    --------------------------------------------------------------*/
+    private int booleanToInteger(boolean estado) {
+        if(estado)
+            return 1;
+        else
+            return 0;
+    }
+    
+    
+        /*--------------------------------------------------------------
+    función que retorna el id de la pregunta actual, este id
+    se obtiene de la base de datos, por medio de una consulta SQL.
+    --------------------------------------------------------------*/
+    private int consultarPreguntaByDescripcion(){
+        
+        int id_pregunta=0;
+        try{
+            Conexion conecta = new Conexion();
+            Connection con = (Connection) conecta.getConexion();
+            
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT `pregunta`.`id_preg`" +
+                                        "FROM `pregunta` "
+                                        + "WHERE pregunta.descripcion_preg like '"+ jl_pregunta.getText() +"';");
+            
+            
+           while(rs.next()){
+               id_pregunta= Integer.parseInt(rs.getString(1));
+                System.out.println("id_preg:  " + rs.getString(1));
+           }
+                
+                        
+        } catch (Exception e){
+            System.out.println(e);            
+        }
+        
+        return id_pregunta;
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
