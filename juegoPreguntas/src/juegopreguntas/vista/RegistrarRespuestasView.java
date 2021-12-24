@@ -256,7 +256,7 @@ public class RegistrarRespuestasView extends javax.swing.JFrame {
           
         Conexion conecta = new Conexion();
         Connection con = (Connection) conecta.getConexion();
-        int id_pregunta = consultarPreguntaByDescripcion();
+        int id_pregunta = consultarPreguntaByDescripcion(jl_pregunta.getText());
         
         if(respuesta.equalsIgnoreCase("")){
                   JOptionPane.showMessageDialog(null, "Debe diligenciar todos los datos", "Error", JOptionPane.WARNING_MESSAGE);
@@ -290,15 +290,17 @@ public class RegistrarRespuestasView extends javax.swing.JFrame {
         else
             return 0;
     }
+      
     
     
         /*--------------------------------------------------------------
     función que retorna el id de la pregunta actual, este id
     se obtiene de la base de datos, por medio de una consulta SQL.
     --------------------------------------------------------------*/
-    private int consultarPreguntaByDescripcion(){
+    public int consultarPreguntaByDescripcion(String desc_pregunta){
         
         int id_pregunta=0;
+        System.out.println("desc_pregunta: ... " + desc_pregunta);
         try{
             Conexion conecta = new Conexion();
             Connection con = (Connection) conecta.getConexion();
@@ -306,12 +308,12 @@ public class RegistrarRespuestasView extends javax.swing.JFrame {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("SELECT `pregunta`.`id_preg`" +
                                         "FROM `pregunta` "
-                                        + "WHERE pregunta.descripcion_preg like '"+ jl_pregunta.getText() +"';");
+                                        + "WHERE pregunta.descripcion_preg like '"+ desc_pregunta +"';");
             
             
            while(rs.next()){
                id_pregunta= Integer.parseInt(rs.getString(1));
-                System.out.println("id_preg:  " + rs.getString(1));
+                System.out.println("id_preg.....:  " + rs.getString(1));
            }
                 
                         

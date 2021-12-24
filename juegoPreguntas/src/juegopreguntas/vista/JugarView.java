@@ -12,6 +12,7 @@ import java.util.Random;
 import juegopreguntas.conexion.Conexion;
 import juegopreguntas.model.Categoria;
 import juegopreguntas.model.Pregunta;
+import juegopreguntas.model.Respuesta;
 import juegopreguntas.model.Ronda;
 
 /**
@@ -48,6 +49,7 @@ public class JugarView extends javax.swing.JFrame {
         jrb_opcion3 = new javax.swing.JRadioButton();
         jrb_opcion4 = new javax.swing.JRadioButton();
         jb_validarRespuesta = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(350, 100));
@@ -67,6 +69,7 @@ public class JugarView extends javax.swing.JFrame {
         jl_desc_preg.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jl_desc_preg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jl_desc_preg.setText("Descripción Pregunta.....");
+        jl_desc_preg.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         jl_desc_categoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jl_desc_categoria.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -106,18 +109,13 @@ public class JugarView extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setText("(Pregunta)");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jrb_opcion1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jrb_opcion2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jrb_opcion3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jrb_opcion4, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(177, 177, 177))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -129,15 +127,27 @@ public class JugarView extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jl_premio))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jl_desc_preg, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(59, 59, 59)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(137, 137, 137)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jrb_opcion1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jrb_opcion2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jrb_opcion3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jrb_opcion4, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(116, 116, 116))
+                            .addComponent(jl_desc_preg, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(124, 124, 124)
+                                .addComponent(jl_desc_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(156, 156, 156)
+                                .addComponent(jb_validarRespuesta))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(jl_desc_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(212, 212, 212)
-                        .addComponent(jb_validarRespuesta)))
-                .addContainerGap(61, Short.MAX_VALUE))
+                        .addGap(288, 288, 288)
+                        .addComponent(jLabel1)))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,7 +158,9 @@ public class JugarView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jl_premio))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jl_desc_preg, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jl_desc_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,7 +174,7 @@ public class JugarView extends javax.swing.JFrame {
                 .addComponent(jrb_opcion4)
                 .addGap(32, 32, 32)
                 .addComponent(jb_validarRespuesta)
-                .addGap(26, 26, 26))
+                .addContainerGap())
         );
 
         pack();
@@ -228,6 +240,9 @@ public class JugarView extends javax.swing.JFrame {
         jl_descripcionRonda.setText(listRondas.get(contRonda).getDescripcion());
         jl_premio.setText("$ " + String.valueOf(listRondas.get(contRonda).getPremio()));
         seleccionarPreguntaAleatoria(consultarPreguntasByCategoria());
+        llenarJRBRespuestas();
+        
+        
         
     }
     
@@ -267,6 +282,22 @@ public class JugarView extends javax.swing.JFrame {
         return listRondas;
     }
     
+     /*--------------------------------------------------------------
+    función que recibe un entero y  retorna un boolean 
+    true si es 1
+    false si es 0
+    --------------------------------------------------------------*/
+    public boolean integerToBoolean(int estado) {
+        boolean bool;
+        if(estado == 1){
+            bool= true;
+        }else {
+            bool = false;
+        }
+        return bool;
+    }
+    
+    
         /*--------------------------------------------------------------
     función que selecciona por medio de la generacion de un número aleatorio,
     un item de la lista de preguntas que se recibe como parametro
@@ -278,7 +309,7 @@ public class JugarView extends javax.swing.JFrame {
         int numeroAleatorio = r.nextInt(listaPreguntas.size());  // Entre 0 y 5, más 1.
         System.out.println("numero aleatorio: " + numeroAleatorio);
         
-        jl_desc_preg.setText("(Pregunta) \n" + listaPreguntas.get(numeroAleatorio).getDescripcion());
+        jl_desc_preg.setText(listaPreguntas.get(numeroAleatorio).getDescripcion());
         
     }
     
@@ -291,6 +322,48 @@ public class JugarView extends javax.swing.JFrame {
         listCategorias = new RegistrarPreguntaView().consultarCategorias();
        
         jl_desc_categoria.setText("( Nivel de dificultad: " + listCategorias.get(contRondas).getNivelDificultad()+ " )");
+    }
+    
+    /*--------------------------------------------------------------
+    función para mostrar en los jRadioButton, la descripción de las opciones de respuesta
+    correspondientes a la pregunta seleccionada, las cuales se obtienen de la base de datos.
+    ----------------------------------------------------------------*/
+    public void llenarJRBRespuestas(){
+        ArrayList<Respuesta> listRespuestas;
+        int id_pregunta=   new RegistrarRespuestasView().consultarPreguntaByDescripcion(jl_desc_preg.getText());
+        System.out.println("id_pregunta....:  " + id_pregunta);
+        listRespuestas = consultarRespuestasByIdPregunta(id_pregunta);
+        System.out.println("size listRespuestas: " + listRespuestas.size());
+        int[] arreglo = {0, 1, 2, 3};
+        //Fisher-Yates shuffle:
+        int[] shuffled = fisher_yates(arreglo);
+        
+        jrb_opcion1.setText(listRespuestas.get(shuffled[0]).getDescripcion());
+        jrb_opcion2.setText(listRespuestas.get(shuffled[1]).getDescripcion());
+        jrb_opcion3.setText(listRespuestas.get(shuffled[2]).getDescripcion());
+        jrb_opcion4.setText(listRespuestas.get(shuffled[3]).getDescripcion());
+        
+    }
+    
+    
+    /*Función de barajamiento usando el algoritmo Fisher Yates
+    Se recibe un arreglo de enteros (ordenado o no) y se aplica
+    el algoritmo de Fisher - Yates.
+    Se devuelve un arreglo de enteros desordenado aleatoriamente
+     */
+    private static int[] fisher_yates(int[] arreglo) {
+      // recorremos todo el arreglo
+      for(int i = arreglo.length - 1; i > 0; i--) {
+        // calculamos un índice aleatorio dentro del rango permitido
+        int shuffled_index = (int)Math.floor(Math.random() * (i + 1));
+        //guardamos el elemento que estamos iterando
+        int tmp = arreglo[i];
+        // asignamos el elemento aleatorio al índice iterado
+        arreglo[i] = arreglo[shuffled_index];
+        // asignamos el elemento iterado al índice aleatorio
+        arreglo[shuffled_index] = tmp;
+      }
+      return arreglo;
     }
     
     
@@ -329,10 +402,49 @@ public class JugarView extends javax.swing.JFrame {
         return listPreguntas;
     }
     
+    /*--------------------------------------------------------------
+    función que retorna una lista con las respuestas correspondientes a la 
+    pregunta seleccionada, estos datos se obtienen de la base de datos, 
+    por medio de una consulta SQL.
+    --------------------------------------------------------------*/
+    private ArrayList<Respuesta> consultarRespuestasByIdPregunta(int idPregunta){
+        
+            ArrayList<Respuesta> listRespuestas = new ArrayList<>();
+            
+        try{
+            Conexion conecta = new Conexion();
+            Connection con = (Connection) conecta.getConexion();
+            
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT `respuesta`.`id_resp`, `respuesta`.`descripcion_resp`, `respuesta`.`estado_resp` " +
+                                        "FROM `respuesta` "
+                                        + "WHERE respuesta.id_preg_resp like "+ idPregunta +";");
+            
+            int i=0;
+            while(rs.next())  {
+                Respuesta respuesta  = new Respuesta();
+                respuesta.setId(Integer.parseInt(rs.getString(1)));
+                System.out.println("id_preg:  " + respuesta.getId());
+                respuesta.setDescripcion(rs.getString(2));
+                System.out.println("descripción_preg: " + respuesta.getDescripcion());
+                respuesta.setEstado(integerToBoolean(Integer.parseInt(rs.getString(3))));
+                System.out.println("estado_resp: " + integerToBoolean(Integer.parseInt(rs.getString(3))));
+                i=i+1;
+                listRespuestas.add(respuesta);
+            }
+                        
+        } catch (Exception e){
+            System.out.println(e);            
+        }
+        
+        return listRespuestas;
+    }
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bg_opciones;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton jb_validarRespuesta;
     private javax.swing.JLabel jl_desc_categoria;

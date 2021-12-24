@@ -143,7 +143,7 @@ public class PrincipalView extends javax.swing.JFrame {
         JugarView jugarView = new JugarView();
         jugarView.llenarJLRondas(0);
         jugarView.llenarJLCategoria(0);
-        jugarView.setVisible(true );
+        jugarView.setVisible(true);
     }//GEN-LAST:event_jb_jugarActionPerformed
 
     /**
