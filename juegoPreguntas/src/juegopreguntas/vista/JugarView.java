@@ -418,7 +418,7 @@ public class JugarView extends javax.swing.JFrame {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("SELECT `respuesta`.`id_resp`, `respuesta`.`descripcion_resp`, `respuesta`.`estado_resp` " +
                                         "FROM `respuesta` "
-                                        + "WHERE respuesta.id_preg_resp like "+ idPregunta +";");
+                                        + "WHERE respuesta.id_preg_resp like "+ idPregunta+1 +";");
             
             int i=0;
             while(rs.next())  {

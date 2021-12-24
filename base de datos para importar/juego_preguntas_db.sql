@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-12-2021 a las 00:30:10
+-- Tiempo de generación: 24-12-2021 a las 22:33:53
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.0.13
 
@@ -73,7 +73,11 @@ CREATE TABLE `jugador` (
 
 INSERT INTO `jugador` (`id_juga`, `name_juga`) VALUES
 (1, 'angela'),
-(2, 'angela');
+(2, 'angela'),
+(3, 'MICHELL'),
+(4, 'andres'),
+(5, 'camilo'),
+(6, 'sergio');
 
 -- --------------------------------------------------------
 
@@ -87,6 +91,15 @@ CREATE TABLE `pregunta` (
   `id_cate_preg` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `pregunta`
+--
+
+INSERT INTO `pregunta` (`id_preg`, `descripcion_preg`, `id_cate_preg`) VALUES
+(2, 'dia de la independencia de colombia', 1),
+(3, 'idioma que hablan en italia', 2),
+(5, 'Quien invento la imprenta?', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -99,6 +112,24 @@ CREATE TABLE `respuesta` (
   `estado_resp` tinyint(4) NOT NULL,
   `id_preg_resp` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `respuesta`
+--
+
+INSERT INTO `respuesta` (`id_resp`, `descripcion_resp`, `estado_resp`, `id_preg_resp`) VALUES
+(1, '20 de julio', 1, 2),
+(2, '3 de septiembre', 0, 2),
+(3, '2 de junio', 0, 2),
+(4, '24 de diciembre', 0, 2),
+(5, 'italiano', 1, 3),
+(6, 'español', 0, 3),
+(7, 'mandarin', 0, 3),
+(8, 'ruso', 0, 3),
+(9, 'Gutemberg', 1, 5),
+(10, 'alfredo nobel', 0, 5),
+(11, 'vicente fernandez', 0, 5),
+(12, 'shakira', 0, 5);
 
 -- --------------------------------------------------------
 
@@ -186,19 +217,19 @@ ALTER TABLE `juego`
 -- AUTO_INCREMENT de la tabla `jugador`
 --
 ALTER TABLE `jugador`
-  MODIFY `id_juga` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_juga` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
-  MODIFY `id_preg` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_preg` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `respuesta`
 --
 ALTER TABLE `respuesta`
-  MODIFY `id_resp` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_resp` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `ronda`
