@@ -2,7 +2,7 @@
 #+author: Angela Monsalve
 #+date: [2021-12-24]
 
-Este proyecto se presenta como solución a los requerimientos del reto tecnico de Sofka, es una aplicación de escritorio 
+Este proyecto se presenta como solución a los requerimientos del reto tecnico de Sofka. Es una aplicación de escritorio 
 de un juego de preguntas, con 5 rondas en las que se avanza, si se responde correctamente cada pregunta. En caso de no hacerlo, 
 se termina el juego. 
 Las tecnologías revisadas y que están dentro de este repositorio son:
