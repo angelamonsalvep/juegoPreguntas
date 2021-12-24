@@ -36,6 +36,13 @@ Ya se puede usar la aplicación y realizar registros.
 
 ** Ejecutando el proyecto
 
+Es necesario descargar e instalar en la computadora JRE (Java Runtime Environment), antiguamente conocida como Java Virtual Machine (JVM).
+puedes descargarlo en la siguiente ruta:
+
+#+link para descarga de Java Runtime Environment
+....\juegoPreguntas\base de datos para importar\juego_preguntas_db
+#+end_src
+
 Para ejecutar el proyecto, buscas en la carpeta dist dentro del proyecto, en la siguiente ruta y ejecutas el archivo "juegoPreguntas,jar":
 
 #+begin_src sh
