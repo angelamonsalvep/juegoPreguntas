@@ -25,6 +25,7 @@ import juegopreguntas.model.Ronda;
 public class JugarView extends javax.swing.JFrame {
 
     private int contRondas=0;
+    ArrayList<Ronda> listRondas = new ArrayList<>();
     /**
      * Creates new form JugarView
      */
@@ -237,8 +238,6 @@ public class JugarView extends javax.swing.JFrame {
     ----------------------------------------------------------------*/
     public void llenarJLRondas(int contRonda){
         
-        Ronda ronda = new Ronda();
-        ArrayList<Ronda> listRondas = new ArrayList<>();
         listRondas = consultarRondas();
         jl_descripcionRonda.setText(listRondas.get(contRonda).getDescripcion());
         jl_premio.setText("$ " + String.valueOf(listRondas.get(contRonda).getPremio()));
@@ -256,10 +255,12 @@ public class JugarView extends javax.swing.JFrame {
     --------------------------------------------------------------*/
     public ArrayList<Ronda> consultarRondas(){
         
-        ArrayList<Ronda> listRondas = new ArrayList<>();
+        ArrayList<Ronda> listRondasc = new ArrayList<>();
+        
+        Conexion conecta = new Conexion();
+        Connection con;
         try{
-            Conexion conecta = new Conexion();
-            Connection con = (Connection) conecta.getConexion();
+             con = (Connection) conecta.getConexion();
             
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM ronda;");
@@ -274,7 +275,7 @@ public class JugarView extends javax.swing.JFrame {
                 ronda.setPremio(Integer.parseInt(rs.getString(3)));
                 System.out.println("premio:  " + ronda.getPremio());
                 i=i+1;
-                listRondas.add(ronda);
+                listRondasc.add(ronda);
             }
             con.close();
                         
@@ -282,7 +283,7 @@ public class JugarView extends javax.swing.JFrame {
             System.out.println(e);            
         }
         
-        return listRondas;
+        return listRondasc;
     }
     
      /*--------------------------------------------------------------
@@ -402,8 +403,10 @@ public class JugarView extends javax.swing.JFrame {
         if(estadoRespuesta == 1){
             contRondas++;
             validacionRespuestaView.jl_validacion.setText("Correcta");
+            validacionRespuestaView.jl_acumulado.setText(String.valueOf(listRondas.get(contRondas).getPremio()));
         } else {
             validacionRespuestaView.jl_validacion.setText("Incorrecta");
+            validacionRespuestaView.jl_acumulado.setText("0");
         }
         validacionRespuestaView.setVisible(true);
         
