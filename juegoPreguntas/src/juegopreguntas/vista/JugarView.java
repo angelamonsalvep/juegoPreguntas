@@ -8,7 +8,10 @@ import com.mysql.jdbc.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.Random;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
 import juegopreguntas.conexion.Conexion;
 import juegopreguntas.model.Categoria;
 import juegopreguntas.model.Pregunta;
@@ -190,7 +193,7 @@ public class JugarView extends javax.swing.JFrame {
 
     private void jb_validarRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_validarRespuestaActionPerformed
         // TODO add your handling code here:
-        new ValidacionRespuestaView().setVisible(true);
+        validarRespuesta();
     }//GEN-LAST:event_jb_validarRespuestaActionPerformed
 
     /**
@@ -367,6 +370,76 @@ public class JugarView extends javax.swing.JFrame {
     }
     
     
+    /*--------------------------------------------------------------
+    función que retorna un String con el valor de la propiedad getText del 
+    JRadioButton seleccionado dentro de un GroupButton
+    
+    --------------------------------------------------------------*/
+    public String getSelectedButtonText(ButtonGroup buttonGroup) { 
+        for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) { 
+            AbstractButton button = buttons.nextElement(); 
+            if (button.isSelected()) { 
+                return button.getText(); 
+            } 
+        } 
+        return null; 
+    }
+
+    
+    
+    
+        /*--------------------------------------------------------------
+    función que valida la respuesta seleccionada por el jugador.
+    --------------------------------------------------------------*/
+    public void validarRespuesta(){
+        
+        ValidacionRespuestaView validacionRespuestaView = new ValidacionRespuestaView();
+        
+        String descRespuestaSel = getSelectedButtonText(bg_opciones);
+        System.out.println("desc_respuesta: " + descRespuestaSel);
+        int estadoRespuesta= consultarEstadoRespuestaByDescripcion(descRespuestaSel);
+        
+        if(estadoRespuesta == 1){
+            contRondas++;
+            validacionRespuestaView.jl_validacion.setText("Correcta");
+        } else {
+            validacionRespuestaView.jl_validacion.setText("Incorrecta");
+        }
+        validacionRespuestaView.setVisible(true);
+        
+    }
+    
+        /*--------------------------------------------------------------
+    función que retorna el estado de la respuesta seleccionada por el jugador, este id
+    se obtiene de la base de datos, por medio de una consulta SQL.
+    --------------------------------------------------------------*/
+    public int consultarEstadoRespuestaByDescripcion(String desc_Respuesta){
+        
+        int estadoRespuesta =0;
+        System.out.println("desc_respuesta: ... " + desc_Respuesta);
+        try{
+            Conexion conecta = new Conexion();
+            Connection con = (Connection) conecta.getConexion();
+            
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT `respuesta`.`estado_resp`" +
+                                        "FROM `respuesta` "
+                                        + "WHERE respuesta.descripcion_resp like '"+ desc_Respuesta +"';");
+            
+            
+           while(rs.next()){
+               estadoRespuesta= Integer.parseInt(rs.getString(1));
+                System.out.println("estado_resp.....:  " + rs.getString(1));
+           }
+                
+                        
+        } catch (Exception e){
+            System.out.println(e);            
+        }
+        
+        return estadoRespuesta;
+    }
+    
     
         /*--------------------------------------------------------------
     función que retorna una lista de objetos tipo Pregunta, estos datos
@@ -409,7 +482,8 @@ public class JugarView extends javax.swing.JFrame {
     --------------------------------------------------------------*/
     private ArrayList<Respuesta> consultarRespuestasByIdPregunta(int idPregunta){
         
-            ArrayList<Respuesta> listRespuestas = new ArrayList<>();
+        ArrayList<Respuesta> listRespuestas = new ArrayList<>();
+        System.out.println("se imprime id preguntas: " + idPregunta);
             
         try{
             Conexion conecta = new Conexion();
@@ -418,7 +492,7 @@ public class JugarView extends javax.swing.JFrame {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("SELECT `respuesta`.`id_resp`, `respuesta`.`descripcion_resp`, `respuesta`.`estado_resp` " +
                                         "FROM `respuesta` "
-                                        + "WHERE respuesta.id_preg_resp like "+ idPregunta+1 +";");
+                                        + "WHERE respuesta.id_preg_resp = "+ idPregunta +";");
             
             int i=0;
             while(rs.next())  {
